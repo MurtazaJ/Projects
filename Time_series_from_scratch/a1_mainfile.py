@@ -67,7 +67,7 @@ y_test = df_test['meantemp']
 
 # Using pickle model to predict
 y_pred = mp.predict(x_test)
-new_df = pd.DataFrame(y_pred)
+new_df = pd.DataFrame(y_pred, columns=['y_predictions'])
 print(new_df)
 mse_best_model = mean_squared_error(y_test, y_pred)*100
 print(mse_best_model)
@@ -78,7 +78,7 @@ fig, ax = plt.subplots(figsize=(15,8))
 chart=sns.lineplot(x=df_train_c['date'], y='meantemp', data = df_train_c)
 chart.set_title('Delhi Climate')
 chart = sns.lineplot(x=df_test_c['date'], y = 'meantemp', data=df_test)
-chart = sns.lineplot(x=df_test_c['date'], y = 0,  data=new_df)
+chart = sns.lineplot(x=df_test_c['date'], y = 'y_predictions',  data=new_df)
 plt.legend(labels = ['train_data', 'test_data', 'predicted_data'])
 plt.show()
 
