@@ -79,7 +79,7 @@ chart=sns.lineplot(x=df_train_c['date'], y='meantemp', data = df_train_c)
 chart.set_title('Delhi Climate')
 chart = sns.lineplot(x=df_test_c['date'], y = 'meantemp', data=df_test)
 chart = sns.lineplot(x=df_test_c['date'], y = 0,  data=new_df)
-plt.legend(labels = ['X_train', 'y_train', 'y_test'])
+plt.legend(labels = ['train_data', 'test_data', 'predicted_data'])
 plt.show()
 
 
