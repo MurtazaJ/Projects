@@ -22,10 +22,16 @@ def mrp_calculator_gents():
 
     total      = cp + gst_amt + expenses
 
-    if GST == 18:
-        mrp     = total + cp + (total*.2) - expenses
+    if cp >= 600:
+        if GST == 18:
+            mrp     = total + cp + (total*.1) - expenses
+        else:
+            mrp = (total ) + cp - expenses - (2*gst_amt)
     else:
-        mrp = (total ) + cp 
+        if GST == 18:
+            mrp     = total + cp + (total*.1) - expenses
+        else:
+            mrp = (total ) + cp 
     
     return mrp , gst_amt, expenses
        
@@ -49,6 +55,7 @@ def mrp_calculator_ladies():
 # Running the Model
 st.sidebar.header('Choose Category')
 selected_category = st.sidebar.selectbox('', ('Ladies & Kids', 'Gents'))
+st.sidebar.subheader('GST')
 if selected_category == 'Gents':
     m , g, e = mrp_calculator_gents()
 else:
