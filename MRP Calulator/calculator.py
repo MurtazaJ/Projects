@@ -63,7 +63,7 @@ else:
 
 # Printing the Model
 st.header(f'MRP:{m: .2f}')
-st.write(f'Gst paid:{g: .2f}           , Expenses occured:{e: .2f}')
+st.write(f'Gst paid: Rs{g: .2f}           , Expenses occured:  Rs{e: .2f}')
 
 st.write('')
 st.markdown('''**Designed by Murtaza** :sunglasses:''')
