@@ -1,11 +1,10 @@
 # Importing the Libraries
-import numpy as np
 import streamlit as st
-import logging
 
 
-logging.basicConfig(level=logging.INFO)
-logging.getLogger('numexpr').setLevel(logging.WARNING)
+
+# logging.basicConfig(level=logging.INFO)
+# logging.getLogger('numexpr').setLevel(logging.WARNING)
 
 # Defining the header
 st.set_page_config(layout = 'wide')
