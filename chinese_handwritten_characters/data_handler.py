@@ -55,7 +55,7 @@ class Dataset(Dataset):
     def __init__(self, csv_file, transform = None):
         self.annotations = pd.read_csv(csv_file)
         self.transform   = transform
-        self.y           = df['value']
+        
 
     def __len__(self):
         return len(self.annotations)
