@@ -3,3 +3,4 @@ numpy
 opencv-python-headless
 opencv-contrib-python
 streamlit
+PoseModule
