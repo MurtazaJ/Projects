@@ -8,10 +8,12 @@ import numpy as np
  
 class poseDetector():
  
-    def __init__(self, mode=False, upBody=False, smooth=True,
+    def __init__(self, mode=False, model_complex = 1,smooth_landmarks=True, upBody=False, smooth=True,
                  detectionCon=0.5, trackCon=0.5):
  
         self.mode = mode
+        self.model_complex = model_complex
+        self.smooth_landmarks = smooth_landmarks
         self.upBody = upBody
         self.smooth = smooth
         self.detectionCon = detectionCon
@@ -19,8 +21,8 @@ class poseDetector():
  
         self.mpDraw = mp.solutions.drawing_utils
         self.mpPose = mp.solutions.pose
-        self.pose = self.mpPose.Pose(self.mode, self.upBody, self.smooth,
-                                     self.detectionCon, self.trackCon)
+        self.pose = self.mpPose.Pose(self.mode, self.model_complex,self.smooth_landmarks, self.upBody, self.smooth)
+                                     #self.detectionCon, self.trackCon)
  
     def findPose(self, img, draw=True):
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -79,7 +81,7 @@ class poseDetector():
         return angle
  
 def main():
-    cap = cv2.VideoCapture('pushup.mp4')
+    cap = cv2.VideoCapture('videos/pushup.mp4')
     pTime = 0
     detector = poseDetector()
     while True:
@@ -103,6 +105,69 @@ def main():
         key = cv2.waitKey(10)
         if key == ord('q') or key == ord('Q'):
             break
+
+def ManualFindPose(img_input):
+    detector = poseDetector()
+    img = detector.findPose(img_input, draw=False)
+    lmList = detector.findPosition(img, draw=False)
+
+    mask  = np.zeros_like(img)
+
+    # Define the Nodes with Red Dots
+    
+
+    #Draw the Lines between Nodes
+    # Nose to Shoulders
+    cv2.line(mask, (lmList[0][1],lmList[0][2]), (lmList[11][1],lmList[11][2]), (0, 255, 0), 2)
+    cv2.line(mask, (lmList[0][1],lmList[0][2]), (lmList[12][1],lmList[12][2]), (0, 255, 0), 2)
+    # Wrist to Elbow
+    cv2.line(mask, (lmList[16][1],lmList[16][2]), (lmList[14][1],lmList[14][2]), (0, 255, 0), 2)
+    cv2.line(mask, (lmList[15][1],lmList[15][2]), (lmList[13][1],lmList[13][2]), (0, 255, 0), 2)
+    # Elbow to Shoulder
+    cv2.line(mask, (lmList[14][1],lmList[14][2]), (lmList[12][1],lmList[12][2]), (0, 255, 0), 2)
+    cv2.line(mask, (lmList[13][1],lmList[13][2]), (lmList[11][1],lmList[11][2]), (0, 255, 0), 2)
+    # Shoulder to Shoulder
+    cv2.line(mask, (lmList[11][1],lmList[11][2]), (lmList[12][1],lmList[12][2]), (0, 255, 0), 2)
+    # Shoulder to Hip
+    cv2.line(mask, (lmList[11][1],lmList[11][2]), (lmList[23][1],lmList[23][2]), (0, 255, 0), 2)
+    cv2.line(mask, (lmList[24][1],lmList[24][2]), (lmList[12][1],lmList[12][2]), (0, 255, 0), 2)
+    # Hip to Hip
+    cv2.line(mask, (lmList[24][1],lmList[24][2]), (lmList[23][1],lmList[23][2]), (0, 255, 0), 2)
+    # Hip to Knee
+    cv2.line(mask, (lmList[24][1],lmList[24][2]), (lmList[26][1],lmList[26][2]), (0, 255, 0), 2)
+    cv2.line(mask, (lmList[25][1],lmList[25][2]), (lmList[23][1],lmList[23][2]), (0, 255, 0), 2)
+    # Knee to Ankle
+    cv2.line(mask, (lmList[28][1],lmList[28][2]), (lmList[26][1],lmList[26][2]), (0, 255, 0), 2)
+    cv2.line(mask, (lmList[25][1],lmList[25][2]), (lmList[27][1],lmList[27][2]), (0, 255, 0), 2)
+
+    # Node 0 : Nose
+    cv2.circle(mask, (lmList[0][1], lmList[0][2]), 5, (203,192,255), cv2.FILLED)
+
+    # Node 15 & 16 : Wrist
+    cv2.circle(mask, (lmList[15][1], lmList[15][2]), 5, (0, 0, 255), cv2.FILLED)
+    cv2.circle(mask, (lmList[16][1], lmList[16][2]), 5, (0, 0, 255), cv2.FILLED)
+            
+    # Node 13 & 14 : Elbow
+    cv2.circle(mask, (lmList[14][1], lmList[14][2]), 5, (0, 140, 255), cv2.FILLED)
+    cv2.circle(mask, (lmList[13][1], lmList[13][2]), 5, (0, 140, 255), cv2.FILLED)
+
+    # Node 11 & 12 : Shoulder
+    cv2.circle(mask, (lmList[11][1], lmList[11][2]), 5, (0, 255, 255), cv2.FILLED)
+    cv2.circle(mask, (lmList[12][1], lmList[12][2]), 5, (0, 255, 255), cv2.FILLED)
+
+    # Node 23 & 24 : Hip
+    cv2.circle(mask, (lmList[23][1], lmList[23][2]), 5, (0, 255, 255), cv2.FILLED)
+    cv2.circle(mask, (lmList[24][1], lmList[24][2]), 5, (0, 255, 255), cv2.FILLED)
+
+    # Node 25 & 26 : Knee
+    cv2.circle(mask, (lmList[25][1], lmList[25][2]), 5, (255, 0, 0), cv2.FILLED)
+    cv2.circle(mask, (lmList[26][1], lmList[26][2]), 5, (255, 0, 0), cv2.FILLED)
+
+    # Node 27 & 28 : Ankle
+    cv2.circle(mask, (lmList[27][1], lmList[27][2]), 5, (255, 0, 0), cv2.FILLED)
+    cv2.circle(mask, (lmList[28][1], lmList[28][2]), 5, (255, 0, 0), cv2.FILLED)
+
+    return mask
         
         
 if __name__ == "__main__":
