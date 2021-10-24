@@ -115,8 +115,8 @@ while start:
                 print('Pose Prediction :', img_classified)
                 cv2.putText(img1,f'Detecting: {img_classified}', (0,height - 70), cv2.FONT_HERSHEY_PLAIN, 1, (255,0,0), 2)
                 #print('elapsed time = ', time_lapsed)
-                # cv2.imshow('image_sk', sk_img)
-
+                cv2.imshow('image_sk', sk_img)
+                frame_window.image(img2)
                 # Append the List to get 10 consequtive pose
                 #print(constant_pose_bool)
                 print('List Counter #', counter)
