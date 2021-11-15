@@ -1,0 +1,13 @@
+{% macro hero() -%}
+
+<div class="row ">
+    <div class = "col hero-text">
+        <h1>
+            Murtaza's Portfolio
+        </h1>
+    </div>
+    <div class = "col" style="text-align:right">
+        <img src="{{url_for('static', filename='murtaza.jpg')}}" alt=Murtaza" height= "200" width=  "200">
+    </div>
+</div>
+{%- endmacro %}

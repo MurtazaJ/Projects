@@ -1,0 +1,51 @@
+:root {
+    --main-bg-color: #49dcb1ff;
+    --text-color: #fff;
+    --second-bg-color: rgb(7, 12, 31);
+    --second-text-color: rgb(194, 224, 224);
+  }
+
+body{
+      background-color: var(--second-bg-color);
+      color:var(--second-text-color);
+      font-family: 'Sniglet', cursive;
+  }
+svg{
+    fill: var(--second-text-color);
+    width:48px;
+    height:48px;
+  }
+
+nav{
+  padding-left:70px;
+
+}
+
+.hero-text{
+  display:flex;
+  align-items:left;
+ 
+}
+
+
+form{
+  display:flex;
+  align-items:right;
+}
+
+.search-input{
+  width: 300px;
+  display:flex;
+  
+}
+
+.navbar-collapse a {
+  color:var(--second-text-color);
+  font-size: 20px;
+}
+
+.d-flex{
+  position: relaitve;
+  float: right;
+}
+
