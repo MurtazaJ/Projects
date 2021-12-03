@@ -1,13 +1,26 @@
 {% macro hero() -%}
 
-<div class="row ">
-    <div class = "col hero-text">
-        <h1>
-            Murtaza's Portfolio
+<div class="row">
+    <div class = "col-8">
+        <h1 class="title">
+            Murtaza Jabalpurwala
         </h1>
+        <div class = "Text-alligned">
+            <h5>
+                Entrepreneurial business professional with over 5 years of experience in developing a business start-up, optimizing with digitalization and maximizing revenues with strategic leadership. Expertise in retail marketing, merchandising, store management, sales, client-vendor relations, and ability to implement strategies to maximize growth. I am interested in advancing my career in BD and upgrade my technical skill-set.           
+            </h5>
+        </div> 
     </div>
-    <div class = "col" style="text-align:right">
-        <img src="{{url_for('static', filename='murtaza.jpg')}}" alt=Murtaza" height= "200" width=  "200">
+    
+    <div class = " col-3 image" >
+        <img src="{{url_for('static', filename='murtaza.jpg')}}" class="image1" alt="Murtaza" height="200" width="200 " >
+        <p style="font-size:17px"> Data Scientist / AI Engineer</p>
+    </div>
+
+    <div class="row"> 
+       
+              
     </div>
 </div>
+
 {%- endmacro %}

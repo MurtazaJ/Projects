@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% from "components/hero.html" import hero %}
+{% from "components/about.html" import Education %}
 
     {% block content %}
     {{hero()}}
+   
+    {{Education()}}
     {% endblock %}
