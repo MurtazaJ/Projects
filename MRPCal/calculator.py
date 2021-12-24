@@ -27,7 +27,7 @@ def mrp_calculator_gents():
 
     gst_amt    = cp* (GST/100)
 
-    expenses   = (cp + gst_amt) *(2/100)
+    expenses   = (cp + gst_amt) *(10/100)
 
     total      = cp + gst_amt + expenses
 
