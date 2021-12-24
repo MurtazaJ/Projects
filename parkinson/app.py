@@ -9,6 +9,7 @@ import altair as alt
 import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
+import numpy as np
 
 
 #create a Dataframe
@@ -36,6 +37,10 @@ st.subheader('Please the link below to download the CSV file')
 st.download_button('Download csv file', filedownload(df))
 st.subheader('--------------------------------------------------------------------')
 
+# Sidebar for defining the height and width of the graphs
+st.sidebar.subheader('Please select a size of the plots with this slidebar')
+width = st.sidebar.slider("Plot width", 0.5, 8., 3.)
+height = st.sidebar.slider("Plot height", 0.5, 8., 3.)
 
 
 #displaying the dataframe
@@ -49,12 +54,20 @@ df_altered = df[(selected_columns_st)]
 st.dataframe(df_altered)
 st.header('')
 
+# Heatmap
+if st.button('close'):
+    m = st.button('Intercorrelation Heatmap')
+else:
+    m = st.button('Intercorrelation Heatmap')
+    if m:
+        st.header('Intercorrelation Matrix Heatmap: press close to close the figure')
+        corr = df_altered.corr()
+        mask = np.zeros_like(corr)
+        mask[np.triu_indices_from(mask)] = True    
+        fig, ax = plt.subplots(figsize=(width, height))
+        ax = sns.heatmap(corr, square=True)
+        st.pyplot(fig)
 
-
-# Sidebar for defining the height and width of the graphs
-st.sidebar.subheader('Please select a size of the plots with this slidebar')
-width = st.sidebar.slider("Plot width", 0.5, 8., 3.)
-height = st.sidebar.slider("Plot height", 0.5, 8., 3.)
 
 #Plotting the scatter plots
 x_axis = st.sidebar.selectbox('Choose X-axis to plot from the features' ,(x.columns))
@@ -70,6 +83,6 @@ st.image(buf)
 
 
 
-df1 = best_model(X_train, y_train)
+# df1 = best_model(X_train, y_train)
  
 # %%
