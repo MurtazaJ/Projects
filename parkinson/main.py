@@ -25,7 +25,7 @@ params2 = {
 
 pipline_params = {f"model__{key}" : value for key, value in params.items()}
 
-clf, best_params, results = grid_cv(X_train, y_train, RandomForestClassifier(), pipline_params, scaler = MinMaxScaler())
+# clf, best_params, results = grid_cv(X_train, y_train, RandomForestClassifier(), pipline_params, scaler = MinMaxScaler())
 
-results_plot = plot_cv(results)
-print(results)                               
+# results_plot = plot_cv(results)
+# print(results)                               
