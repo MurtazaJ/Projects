@@ -36,7 +36,7 @@ def best_model(x,y):
 
 def get_score(xt, yt, xtest, ytest, model, scaler=None):
     if scaler:
-        model = Pipeline(steps = [('scaler', scaler, ('model', model))])
+        model = Pipeline(steps = [('scaler', scaler), ('model', model)])
     
     model.fit(xt,yt)
     pred = model.predict(xtest)
@@ -49,15 +49,15 @@ def get_score(xt, yt, xtest, ytest, model, scaler=None):
     print()
     sns.heatmap(confusion_matrix(ytest, pred), fmt ='.1f', annot=True)
 
-def grid_cv(xt, yt, model, params, scaler=None):
+def grid_cv(xt, yt, model, params, scaler = None):
     if scaler:
-        model = Pipeline(steps = [('scaler', scaler), ('model', model), ('params', params)])
-    
-    skf = StratifiedKFold(5, shuffle=True)
-    clf = GridSearchCV(model, param_grid = params, cv =skf, return_train_score = True)
+        model = Pipeline(steps = [('scaler', scaler), ('model', model)])
+    skf = StratifiedKFold(5, shuffle = True)
+    clf = GridSearchCV(model, param_grid = params, cv = skf, return_train_score = True)
     clf.fit(xt, yt)
     res = pd.DataFrame(clf.cv_results_).sort_values('mean_test_score', ascending = False)
-    return clf.best_estimator_, clf.best_params_, res[[' mean_train_score', 'mean_test_score', 'params']]
+    return clf.best_estimator_, clf.best_params_, res[['mean_train_score', 'mean_test_score', 'params']]
+
 
 def plot_cv(result):
     sns.lineplot(x=result.reset_index().index, y = result.mean_train_score)
