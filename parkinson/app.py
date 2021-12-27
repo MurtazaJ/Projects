@@ -10,11 +10,30 @@ from io import BytesIO
 import numpy as np
 import pandas as pd
 from sklearn.metrics import confusion_matrix
+from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold, GridSearchCV
+
+def create_df():
+    df= pd.read_csv("parkinson_disease.csv")
+    # print(df.head())
+    # print(df.name.nunique() / df.shape[0])
+    # print(df.name.nunique())
+    # print(df.shape[0])
+    # print(df.shape)
+    # print(df.isnull().values.sum())    
+    # df.nunique()
+    return df
 
 
-#create a Dataframe
+def train_and_test(df):
+    x = df.drop(['status','name' ], axis=1)
+    y = df.status
+    X_train, X_test, y_train, y_test = train_test_split(x,y, test_size=0.3)
+    print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
+    return X_train, X_test, y_train, y_test
+
+
 df = create_df()
-X_train, X_test, y_train, y_test = train_and_test(df)
+X_train, X_test, y_train,y_test = train_test_split(df)
 
 #Streamlit initialisations
 import streamlit as st

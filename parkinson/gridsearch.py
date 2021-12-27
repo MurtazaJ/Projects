@@ -1,6 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import MinMaxScaler
-from preprocessing import create_df, train_and_test
+from app import create_df, train_and_test
 from models import best_model, get_score, grid_cv
 import pandas as pd
 import csv
