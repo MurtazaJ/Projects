@@ -1,7 +1,5 @@
 
 #%%
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import MinMaxScaler
 from preprocessing import create_df, train_and_test
 from models import best_model, get_score, grid_cv
 import seaborn as sns
@@ -11,7 +9,7 @@ import base64
 from io import BytesIO
 import numpy as np
 import pandas as pd
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import confusion_matrix
 
 
 #create a Dataframe
