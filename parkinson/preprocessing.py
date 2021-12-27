@@ -24,6 +24,6 @@ def train_and_test(df):
     y = df.status
     X_train, X_test, y_train, y_test = train_test_split(x,y, test_size=0.3)
     print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
-    return x,y,X_train, X_test, y_train, y_test
+    return X_train, X_test, y_train, y_test
 
 

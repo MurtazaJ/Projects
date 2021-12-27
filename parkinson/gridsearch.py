@@ -2,8 +2,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import MinMaxScaler
 from preprocessing import create_df, train_and_test
 from models import best_model, get_score, grid_cv
+import pandas as pd
+import csv
 df = create_df()
-x,y,X_train, X_test, y_train, y_test = train_and_test(df)
+X_train, X_test, y_train, y_test = train_and_test(df)
 
 params = {
         'n_estimators': [100,200,300], 
@@ -15,4 +17,11 @@ params = {
         }
 pipline_params = {f"model__{key}" : value for key, value in params.items()}
 clf, best_params, results = grid_cv(X_train, y_train, RandomForestClassifier(), pipline_params, scaler = MinMaxScaler())
-print(results)
+
+file = open('best_params.csv', 'w')
+writer = csv.writer(file)
+for key, value in best_params.items():
+        writer.writerow([key,value])
+file.close()
+
+

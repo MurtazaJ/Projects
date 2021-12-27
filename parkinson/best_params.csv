@@ -1,0 +1,6 @@
+model__bootstrap,True
+model__class_weight,
+model__criterion,entropy
+model__max_depth,20
+model__max_features,sqrt
+model__n_estimators,300

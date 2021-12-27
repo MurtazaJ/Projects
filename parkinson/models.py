@@ -20,7 +20,7 @@ def best_model(x,y):
     models = [LogisticRegression(), SVC(), GaussianNB(), KNeighborsClassifier(), DecisionTreeClassifier(), RandomForestClassifier(), XGBRFClassifier(eval_metric='mlogloss',use_label_encoder =False), LGBMClassifier()]
     model_names = ['logisitc reg', 'svm', 'naive bayes', 'knn', 'decision tree', 'random forest', 'xgboost', 'lgbm']
     scalers = [None, StandardScaler(), RobustScaler(), MinMaxScaler()]
-    scaler_names = ['none', 'std', 'robust', 'min-max']
+    scaler_names = ['none' ,'std', 'robust', 'min-max']
     scores = [[] for _ in range(4)]
     iterr = 0
     for model in models:
@@ -43,11 +43,12 @@ def get_score(xt, yt, xtest, ytest, model, scaler=None):
     print('Report'.center(70, '='))
     print()
     print(f"Training score ==> {model.score(xt, yt)}")
-    print(f"Training score ==> {model.score(xt, yt)}")
+    print(f"Testing score  :===> {model.score(xtest, ytest)}")
     print()
     print(classification_report(ytest,pred))
     print()
     sns.heatmap(confusion_matrix(ytest, pred), fmt ='.1f', annot=True)
+    return classification_report(ytest,pred), ytest, pred
 
 def grid_cv(xt, yt, model, params, scaler = None):
     if scaler:
@@ -64,3 +65,4 @@ def plot_cv(result):
     sns.lineplot(x=result.reset_index().index, y = result.mean_test_score)
     plt.legend(['train_score', 'test_score'])
     plt.title('F1_Score')
+
