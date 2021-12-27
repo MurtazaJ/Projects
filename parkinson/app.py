@@ -11,8 +11,10 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold, GridSearchCV
+import os
 
 def create_df():
+    
     df= pd.read_csv("parkinson_disease.csv")
     # print(df.head())
     # print(df.name.nunique() / df.shape[0])
@@ -196,3 +198,7 @@ weighted avg       0.91      0.92      0.91        59''')
 else:
     if button8:
         print(button7)
+
+
+if __name__ =='__main__':
+    main()
