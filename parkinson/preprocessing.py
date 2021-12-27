@@ -8,7 +8,7 @@ from utils import permutation_importance, mi_score, plot_mi
 
 #%%
 def create_df():
-    df= pd.read_csv('data\parkinson_disease.csv')
+    df= pd.read_csv("data/parkinson_disease.csv", delimeter =',' )
     print(df.head())
     print(df.name.nunique() / df.shape[0])
     print(df.name.nunique())
