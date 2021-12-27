@@ -35,7 +35,7 @@ def train_and_test(df):
 
 
 df = create_df()
-X_train, X_test, y_train,y_test = train_test_split(df)
+X_train, X_test, y_train, y_test = train_test_split(df)
 
 #Streamlit initialisations
 import streamlit as st
@@ -201,4 +201,4 @@ else:
 
 
 if __name__ =='__main__':
-    main()
+    df = create_df()
