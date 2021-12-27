@@ -1,6 +1,6 @@
 
 #%%
-from preprocessing import create_df, train_and_test
+
 from models import best_model, get_score, grid_cv
 import seaborn as sns
 import altair as alt
