@@ -29,7 +29,7 @@ st.title('Predict if a person has Parkinson')
 
 
 def create_df():   
-    df= pd.read_csv("/projects/parkinson/parkinson_disease.csv")
+    df= pd.read_csv("parkinson/parkinson_disease.csv")
     # print(df.head())
     # print(df.name.nunique() / df.shape[0])
     # print(df.name.nunique())
