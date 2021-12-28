@@ -152,7 +152,7 @@ col12.header('')
 col13.header('')
 col14.header('')
 if button3:
-    st.table(pd.read_csv('best_models.csv'))
+    st.table(pd.read_csv('parkinson/best_models.csv'))
 else:
     if button4:
         print(button3)
@@ -175,7 +175,7 @@ if button5:
     'max_features' : ["auto", "sqrt", "log2"]
             }
     ''')
-    st.table(pd.read_csv('best_params.csv'))
+    st.table(pd.read_csv('parkinson/best_params.csv'))
 else:
     if button6:
         print(button5)
