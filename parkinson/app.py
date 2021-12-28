@@ -1,6 +1,4 @@
-
-#%%
-
+import streamlit as st
 from models import best_model, get_score, grid_cv
 import seaborn as sns
 import altair as alt
@@ -12,9 +10,13 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold, GridSearchCV
 import os
+from sklearn.ensemble import RandomForestClassifier
 
-def create_df():
-    
+
+
+
+
+def create_df():   
     df= pd.read_csv("parkinson_disease.csv")
     # print(df.head())
     # print(df.name.nunique() / df.shape[0])
@@ -35,16 +37,12 @@ def train_and_test(df):
 
 
 df = create_df()
-X_train, X_test, y_train, y_test = train_test_split(df)
+X_train, X_test, y_train, y_test = train_and_test(df)
 
-#Streamlit initialisations
-import streamlit as st
-st.set_page_config(layout = 'wide')
-st.title('Classification of Parkinson disease')
+
+
 
 #Download the file
-df = create_df()
-
 def filedownload(df):
     csv = df.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
@@ -52,7 +50,7 @@ def filedownload(df):
     return href
 st.sidebar.subheader('Press download to download the CSV file')
 # st.markdown(filedownload(df), unsafe_allow_html=True)
-st.sidebar.download_button('Download csv file', filedownload(df))
+st.sidebar.download_button('Download csv file', filedownload(df), key='downloadfile')
 st.sidebar.subheader('')
 
 
@@ -67,8 +65,8 @@ st.header('')
 
 # Heatmap
 col1 , col2, col3 = st.columns(3)
-button1 = col1.button('Intercorrelation Heatmap')
-button2 = col2.button('close')
+button1 = col1.button('Intercorrelation Heatmap', key='heatmap')
+button2 = col2.button('close', key='close0')
 col3.header('')
 # col4.header('')
 
@@ -136,7 +134,7 @@ st.image(buf)
 
 st.title('Best models')
 col10, col11, col12, col13, col14 =st.columns(5) 
-button3 = col10.button('Best models')
+button3 = col10.button('Best models', key='best_model')
 button4 = col11.button('close', key='close2')
 col12.header('')
 col13.header('')
@@ -149,7 +147,7 @@ else:
 
 st.title('Grid Search for Random forest Classifier')
 col15, col16, col17, col18, col19 =st.columns(5) 
-button5 = col15.button('Best parameters')
+button5 = col15.button('Best parameters', key='bestpara')
 button6 = col16.button('close', key='close')
 col17.header('')
 col18.header('')
@@ -170,11 +168,17 @@ else:
     if button6:
         print(button5)
 
-from main_file import results, ytest, pred
-print(results)
+parameters = {  'bootstrap': True,
+                'criterion': 'entropy',
+                'max_depth':18,
+                'max_features':'sqrt',
+                'n_estimators':300
+                }
+results, ytest, pred = get_score(X_train, y_train, X_test, y_test, model = RandomForestClassifier(**parameters), scaler = StandardScaler())
+
 st.title('Training the model')
 col20, col21, col22, col23, col24 =st.columns(5) 
-button7 = col20.button('Train')
+button7 = col20.button('Train', key='train')
 button8 = col21.button('close', key='close3')
 col22.header('')
 col23.header('')
@@ -201,4 +205,4 @@ else:
 
 
 if __name__ =='__main__':
-    df = create_df()
+    create_df()
