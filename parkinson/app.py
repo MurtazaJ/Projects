@@ -1,4 +1,15 @@
 import streamlit as st
+st.set_page_config(
+     page_title="Parkinson App",
+     page_icon="🧊",
+     layout="wide",
+     initial_sidebar_state="expanded",
+     menu_items={
+         'Get Help': 'https://www.extremelycoolapp.com/help',
+         'Report a bug': "https://www.extremelycoolapp.com/bug",
+         'About': "# This is a header. This is an *extremely* cool app!"
+     }
+ )
 from models import best_model, get_score, grid_cv
 import seaborn as sns
 import altair as alt
@@ -11,9 +22,10 @@ from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold, GridSearchCV
 import os
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
 
 
-
+st.title('Predict if a person has Parkinson')
 
 
 def create_df():   
