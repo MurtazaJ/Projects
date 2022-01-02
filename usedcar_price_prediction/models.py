@@ -93,7 +93,7 @@ def full_model(pth):
     return X, y, regr, scaler
 
 
-X, y, regr, scaler = full_model('data/train-data.csv')
+X, y, regr, scaler = full_model('usedcar_price_prediction/data/train-data.csv')
 
     #Saving file to Pickle
 with open('used_car_price_model.pkl', 'wb') as f:
