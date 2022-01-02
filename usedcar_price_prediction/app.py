@@ -31,10 +31,10 @@ import pickle
 import numpy as np
 import pandas as pd
 from models import predict_price
-df1 = pd.read_csv('data/train-data.csv')
-with open('used_Car_price_model.pkl', 'rb') as f:
+df1 = pd.read_csv('usedcar_price_prediction/data/train-data.csv')
+with open('usedcar_price_prediction/used_Car_price_model.pkl', 'rb') as f:
     model = pickle.load(f)
-with open('scaler.pkl', 'rb') as f:
+with open('usedcar_price_prediction/scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 
 # Adding Company Feature Engineering

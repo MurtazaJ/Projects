@@ -14,8 +14,8 @@ from sklearn.neighbors import KNeighborsRegressor
 warnings.filterwarnings('ignore')
 
 #%%
-pth_train = 'data/train-data.csv'
-pth_test = 'data/test-data.csv'
+pth_train = 'usedcar_price_prediction/data/train-data.csv'
+pth_test = 'usedcar_price_prediction/data/test-data.csv'
 
 
 def preprocessing(pth):

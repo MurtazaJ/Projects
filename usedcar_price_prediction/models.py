@@ -13,8 +13,8 @@ import numpy as np
 import pandas as pd
 import pickle
 
-pth_train = 'data/train-data.csv'
-pth_test = 'data/test-data.csv'
+pth_train = 'usedcar_price_prediction/data/train-data.csv'
+pth_test = 'usedcar_price_prediction/data/test-data.csv'
 
 def full_model(pth):
     df = preprocessing(pth)
