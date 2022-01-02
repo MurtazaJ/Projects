@@ -84,7 +84,7 @@ if check_price == 1:
                             seats, company_name, select_model,
                             location, fuel_type, transmission, owner_type)
     
-    st.subheader(f'The price of your car is {price} lacs')
+    st.subheader(f'The price of your car is {price:.2f} lacs')
 
 
 st.write('')
