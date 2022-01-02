@@ -32,7 +32,7 @@ import numpy as np
 import pandas as pd
 from models import predict_price
 df1 = pd.read_csv('usedcar_price_prediction/data/train-data.csv')
-with open('used_Car_price_model.pkl', 'rb') as f:
+with open('used_car_price_model.pkl', 'rb') as f:
     model = pickle.load(f)
 with open('scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
