@@ -15,82 +15,87 @@ import pickle
 
 pth_train = 'data/train-data.csv'
 pth_test = 'data/test-data.csv'
-df = preprocessing(pth_train)
-X = df.drop(['Price'], axis = 1)
-y = df.Price
 
-scaler = MinMaxScaler()
-# Passing through MinMaxScaler 
-X[['Kilometers_Driven', 'Mileage']] = scaler.fit_transform(X[['Kilometers_Driven', 'Mileage']])     
-x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+def full_model(pth):
+    df = preprocessing(pth)
+    X = df.drop(['Price'], axis = 1)
+    y = df.Price
 
-
-# Finding the best model
-dicts = {}
-models = {'Lasso': Lasso(),
-          'Ridge': Ridge() ,
-          'KNeighbors Regression':KNeighborsRegressor(n_neighbors=2) 
-         }
-for k , v in models.items():
-    cv = ShuffleSplit(n_splits=5, test_size=0.2, random_state=0)
-    crss = cross_val_score(v, x_train, y_train, cv=cv)
-    dicts[k] = crss.mean()
-print(dicts)
+    scaler = MinMaxScaler()
+    # Passing through MinMaxScaler 
+    X[['Kilometers_Driven', 'Mileage']] = scaler.fit_transform(X[['Kilometers_Driven', 'Mileage']])     
+    x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 
-
-# Finding the best model with parameters search using GridSearchCV
-def find_best_model_using_gridsearchcv(X,y):
-    models1 = {
-            'KNeighborsRegressor' : {
-                                    'model': KNeighborsRegressor(),
-                                    'params': {
-                                              'n_neighbors': [2,3,5,10]
-                                                }
-                                    },
-            'lasso': {
-                    'model': Lasso(),
-                    'params': {
-                                'alpha': [1,2],
-                                'selection': ['random', 'cyclic']
-                              }
-                     },
-            'decision_tree': {
-                              'model': DecisionTreeRegressor(),
-                              'params': {
-                                        'criterion' : ['mse','friedman_mse'],
-                                        'splitter': ['best','random']
-                                        }
-                            }
-            }
-    scores = []
-    cv = ShuffleSplit(n_splits=5, test_size=0.2, random_state=0)
-    for model_name, values in models1.items():
-        gs =  GridSearchCV(values['model'], values['params'], cv=cv, return_train_score=False)
-        gs.fit(X,y)
-        scores.append({
-            'model': model_name,
-            'best_score': gs.best_score_,
-            'best_params': gs.best_params_
-        })
-
-    return pd.DataFrame(scores,columns=['model','best_score','best_params'])
+    # # Finding the best model
+    # dicts = {}
+    # models = {'Lasso': Lasso(),
+    #         'Ridge': Ridge() ,
+    #         'KNeighbors Regression':KNeighborsRegressor(n_neighbors=2) 
+    #         }
+    # for k , v in models.items():
+    #     cv = ShuffleSplit(n_splits=5, test_size=0.2, random_state=0)
+    #     crss = cross_val_score(v, x_train, y_train, cv=cv)
+    #     dicts[k] = crss.mean()
+    # print(dicts)
 
 
-df_gs = find_best_model_using_gridsearchcv(x_train, y_train)
+
+    # Finding the best model with parameters search using GridSearchCV
+    def find_best_model_using_gridsearchcv(X,y):
+        models1 = {
+                'KNeighborsRegressor' : {
+                                        'model': KNeighborsRegressor(),
+                                        'params': {
+                                                'n_neighbors': [2,3,5,10]
+                                                    }
+                                        },
+                'lasso': {
+                        'model': Lasso(),
+                        'params': {
+                                    'alpha': [1,2],
+                                    'selection': ['random', 'cyclic']
+                                }
+                        },
+                'decision_tree': {
+                                'model': DecisionTreeRegressor(),
+                                'params': {
+                                            'criterion' : ['mse','friedman_mse'],
+                                            'splitter': ['best','random']
+                                            }
+                                }
+                }
+        scores = []
+        cv = ShuffleSplit(n_splits=5, test_size=0.2, random_state=0)
+        for model_name, values in models1.items():
+            gs =  GridSearchCV(values['model'], values['params'], cv=cv, return_train_score=False)
+            gs.fit(X,y)
+            scores.append({
+                'model': model_name,
+                'best_score': gs.best_score_,
+                'best_params': gs.best_params_
+            })
+
+        return pd.DataFrame(scores,columns=['model','best_score','best_params'])
 
 
-# Best model is KNeighborsRegressor
-regr = KNeighborsRegressor(n_neighbors=3)
-regr.fit(x_train, y_train)
+    df_gs = find_best_model_using_gridsearchcv(x_train, y_train)
 
 
-# Checking Score
-print("mean squared error: %.2f" % np.mean((regr.predict(x_test) - y_test) ** 2))
-print("variance score: %.2f" % regr.score(x_test, y_test) )
+    # Best model is KNeighborsRegressor
+    regr = KNeighborsRegressor(n_neighbors=3)
+    regr.fit(x_train, y_train)
 
 
-#Saving file to Pickle
+    # Checking Score
+    # print("mean squared error: %.2f" % np.mean((regr.predict(x_test) - y_test) ** 2))
+    # print("variance score: %.2f" % regr.score(x_test, y_test) )
+    return X, y, regr, scaler
+
+
+X, y, regr, scaler = full_model('data/train-data.csv')
+
+    #Saving file to Pickle
 with open('used_car_price_model.pkl', 'wb') as f:
     pickle.dump(regr, f)
 with open('scaler.pkl', 'wb') as f:

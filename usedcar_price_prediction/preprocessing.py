@@ -31,21 +31,21 @@ def preprocessing(pth):
 
     #Dropping columns with 0.70% null values from the dataset
     df = df.drop('New_Price',axis=1)
-    print(df.columns)
-    print(df.shape)
+    # print(df.columns)
+    # print(df.shape)
 
     #Understand the unique counts of each column
-    unique = []
-    for x in df:
-        y = len(df[x].unique())
-        unique.append(y)
-        unique_cnt = dict(zip(list(df),unique))
-    print(unique_cnt)
+    # unique = []
+    # for x in df:
+    #     y = len(df[x].unique())
+    #     unique.append(y)
+    #     unique_cnt = dict(zip(list(df),unique))
+    # print(unique_cnt)
 
     #Create a new feature Comapny
     company = [i.split()[0] for i in df['Name']]
     df.insert(0, 'Company', company)
-    print(df['Company'].value_counts())
+    # print(df['Company'].value_counts())
     # Removing useless characters from mileage, Engine and Power
     df['Mileage'] = pd.to_numeric(df['Mileage'].str.lower().str.get(0), errors ='coerce')
     df['Engine'] = pd.to_numeric(df['Engine'].str.lower().str.split().str.get(0), errors='coerce')
@@ -71,18 +71,18 @@ def preprocessing(pth):
     #Converting names of card with frequency less than 10 into others to avoide over modelling
     df_name_cars = df.Name.value_counts() 
     name_stats_less_than_10 =df_name_cars[df_name_cars<=10]
-    name_stats_less_than_10
+    # name_stats_less_than_10
     df.Name = df.Name.apply(lambda x: 'other' if x in name_stats_less_than_10 else x)
-    len(df.Name.unique())
+    # len(df.Name.unique())
 
 
     ##Removing Outliers
     
     #For Mileage creating a mean of mileage less than 5
-    print(df.Mileage[df.Mileage<5].unique())
+    # print(df.Mileage[df.Mileage<5].unique())
     #we will replace the mileage <z5 with their mean 
     df.Mileage = [i if i>5 else df.Mileage.mean() for i in df.Mileage ]
-    print(df.Mileage[df.Mileage<5].unique())
+    # print(df.Mileage[df.Mileage<5].unique())
     
     # Removing outliers in kilometers
     '''print(df['Kilometers_Driven'].min())
