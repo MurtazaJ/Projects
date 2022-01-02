@@ -1,3 +1,4 @@
+#%%
 import streamlit as st
 st.set_page_config(
      page_title="Used Car Price Detection",
@@ -11,17 +12,17 @@ st.set_page_config(
                 }
                     )
 
-st.markdown(
-            """
-                <style>
-                .reportview-container {               
-                    background: url("https://cdn.pixabay.com/photo/2021/01/01/21/09/challenger-5880009_960_720.jpg");
-                    background-repeat: no-repeat;
-                    background-size : 100%, 100%;
-                }
-                </style>
-            """,
-            unsafe_allow_html=True)
+# st.markdown(
+#             """
+#                 <style>
+#                 .reportview-container {               
+#                     background: url("https://cdn.wallpapersafari.com/12/40/120mvB.jpg");
+#                     background-repeat: no-repeat;
+#                     background-size : 100%, 100%;
+#                 }
+#                 </style>
+#             """,
+#             unsafe_allow_html=True)
 
 st.title('Lets find your right Price')
 st.header('Want to sell your car or wish to buy a used car')
@@ -31,7 +32,7 @@ import pickle
 import numpy as np
 import pandas as pd
 from models import predict_price
-df1 = pd.read_csv('usedcar_price_prediction/data/train-data.csv')
+df1 = pd.read_csv('usedcar_price_prediction/data/train-data.csv') #
 with open('used_car_price_model.pkl', 'rb') as f:
     model = pickle.load(f)
 with open('scaler.pkl', 'rb') as f:
@@ -65,7 +66,8 @@ col9, col10, col11, col12 = st.columns(4)
 transmission = col9.selectbox('Select your Fuel Type', df1.Transmission.unique())
 owner_type = col10.selectbox('Select your Fuel Type', df1.Owner_Type.unique())
 company_name = col11.selectbox('Select car Company', df1.Company.unique())
-select_model = col12.selectbox('Select car model', df1.Name.unique())
+name_of_car = df1.loc[df1['Name'].str.startswith(tuple(company_name)), 'Name'].tolist()
+select_model = col12.selectbox('Select car model', name_of_car)
 
 
 #Scaling unscaled data with minmaxscaler
