@@ -18,7 +18,7 @@ import tensorflow as tf
 START = "2015-01-01"
 TODAY = datetime.today().strftime("%Y-%m-%d")
 
-st.title('Stock Forecast App with LSTM model')
+st.title('CryptoCurrency Stock Forecast App with LSTM model')
 col1, col2 = st.columns(2)
 stocks = ('BTC', 'XRP', 'ETH')
 against_currency1 = ('USD', 'EUR', 'GBP', 'INR')
