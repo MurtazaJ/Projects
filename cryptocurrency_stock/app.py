@@ -102,7 +102,7 @@ except:
     #Fittingthe model
     model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=200, batch_size=64, verbose=1)
     # Saving the model
-    model.save('saved_model')
+    model.save('cryptocurrency_stock/saved_model')
 
 # Performing the prediction
 train_predict = model.predict(X_train)
