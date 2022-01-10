@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 
 
-START = "2015-01-01"
+START = "2018-01-01"
 TODAY = datetime.today().strftime("%Y-%m-%d")
 
 st.title('CryptoCurrency Stock Forecast App with LSTM model')
@@ -102,7 +102,7 @@ except:
     #Fittingthe model
     model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=200, batch_size=64, verbose=1)
     # Saving the model
-    model.save('cryptocurrency_stock/saved_model')
+    model.save('saved_model')
 
 # Performing the prediction
 train_predict = model.predict(X_train)
@@ -186,7 +186,7 @@ flat_ls["Date"] = flat_ls["Date"].dt.strftime("%Y-%m-%d")
 flat_ls
 data_load_state1.text('Loading data... done!')
 # %%
-data_load_state2 = st.text('loading the chart...')
+
 def plot_result():
 	fig1 = go.Figure()
 	fig1.add_trace(go.Scatter(x=flat_ls['Date'], y= flat_ls['Close'], name="predicted data"))
@@ -195,6 +195,7 @@ def plot_result():
 	st.plotly_chart(fig1, use_container_width=True)	
 plot_result()
 # %%
+data_load_state2 = st.text('loading the chart...')
 data_load_state2.text('Loading chart... done!')
 
 st.write('created by Murtaza')
