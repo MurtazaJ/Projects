@@ -100,7 +100,7 @@ except:
     model.add(Dense(1))
     model.compile(loss = 'mean_squared_error', optimizer='adam')
     #Fittingthe model
-    model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=2, batch_size=64, verbose=1)
+    model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=100, batch_size=64, verbose=1)
     # Saving the model
     model.save('saved_model')
 
