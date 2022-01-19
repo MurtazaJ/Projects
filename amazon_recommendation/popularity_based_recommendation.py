@@ -4,6 +4,8 @@ pd.set_option('precision', 2)
 
 
 #%%
+
+def popularity 
 df = pd.read_csv('data/export_dataframe.csv')
 
 #Recommendation based on product rating
