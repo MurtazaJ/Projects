@@ -42,3 +42,15 @@ order_centroids = model.cluster_centers_.argsort()[:, ::-1]
 terms = vectorizer.get_feature_names()
 for i in range(true_k):
     print_cluster(i)
+
+#%%
+def show_recommendations(product):
+    #print("Cluster ID:")
+    Y = vectorizer.transform([product])
+    prediction = model.predict(Y)
+    #print(prediction)
+    print_cluster(prediction[0])
+
+#%%
+show_recommendations("spray paint")
+# %%
