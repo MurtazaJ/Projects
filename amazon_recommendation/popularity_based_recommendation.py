@@ -4,10 +4,8 @@ pd.set_option('precision', 2)
 
 
 #%%
-df = pd.read_csv('data/ratings_Electronics.csv', names= ['user_id','product_id', 'rating','time_stamp' ])
-df = df.drop('time_stamp', axis = 1)
-df = df.iloc[:1000000, :]
-# %%
+df = pd.read_csv('data/export_dataframe.csv')
+
 #Recommendation based on product rating
 df.head()
 

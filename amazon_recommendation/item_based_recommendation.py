@@ -4,8 +4,8 @@ import pandas as pd
 from sklearn.decomposition import TruncatedSVD
 
 #%%
-df = pd.read_csv('data/ratings_Beauty.csv.zip', names= ['user_id','product_id', 'rating','time_stamp' ])
-df = df.drop('time_stamp', axis = 1)
+df = pd.read_csv('data/export_dataframe.csv')
+# df = df.drop('time_stamp', axis = 1)
 df = df.head(10000)
 
 #%%
