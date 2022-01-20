@@ -21,7 +21,7 @@ state = None
 workout_start_time = time.time()
 
 #Loading Model
-checkpoint=torch.load('Best_Pose_Model_7.pth')  # replace your path with the (.pth) file
+checkpoint=torch.load('count/Best_Pose_Model_7.pth')  # replace your path with the (.pth) file
 
 model = pc.ConvNet(num_classes=2)
 model.load_state_dict(checkpoint)
