@@ -87,7 +87,7 @@ class ConvNet(nn.Module):
     return output
 
 # Load the Model
-checkpoint=torch.load('Best_Pose_Model_7.pth')  # replace your path with the (.pth) file
+checkpoint=torch.load('count/Best_Pose_Model_7.pth')  # replace your path with the (.pth) file
 model = ConvNet(num_classes=2)
 model.load_state_dict(checkpoint)
 model.eval()
