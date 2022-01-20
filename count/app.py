@@ -196,7 +196,7 @@ while start:
 
     key = cv2.waitKey(10)
     if key == stop:
-        break
+        break 
 
 
             
