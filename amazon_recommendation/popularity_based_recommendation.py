@@ -2,11 +2,13 @@
 import pandas as pd
 pd.set_option('precision', 2)
 
-
+df = pd.read_csv('data/export_dataframe.csv')
+tempdf = df.head(1000)
+tempdf.to_csv('temp.csv',index=False)
 #%%
 
 def popularity_based_search():
-    df = pd.read_csv('data/export_dataframe.csv')
+    df = pd.read_csv('temp.csv')
     #Recommendation based on product rating
     # df.head()
     # %%
@@ -57,4 +59,7 @@ def popularity_based_search():
     products_greater_than_min_rating.rename(columns={'rating': 'mean_rating'}, inplace=True)
     # %%
     products_greater_than_min_rating.sort_values('score', ascending=False)
-    return products_greater_than_min_rating.sort_values('score', ascending=False), df, mean_rating, 
+    return products_greater_than_min_rating.sort_values('score', ascending=False), df, mean_rating
+
+products_greater_than_min_rating, df, mean_rating = popularity_based_search()
+print(df)

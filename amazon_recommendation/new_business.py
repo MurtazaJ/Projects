@@ -31,6 +31,7 @@ def print_cluster(i):
     for ind in order_centroids[i, :10]:
         print(' %s' % terms[ind]),
     print
+
 # %%
 true_k = 50
 
@@ -52,5 +53,5 @@ def show_recommendations(product):
     print_cluster(prediction[0])
 
 #%%
-show_recommendations("spray paint")
+show_recommendations("screw")
 # %%
