@@ -7,7 +7,7 @@ from sklearn.decomposition import TruncatedSVD
 df = pd.read_csv('data/export_dataframe.csv')
 # df = df.drop('time_stamp', axis = 1)
 df = df.head(10000)
-
+df
 #%%
 df_rating_matrix = df.pivot_table(values='rating', index = 'user_id', columns='product_id', fill_value=0)
 
