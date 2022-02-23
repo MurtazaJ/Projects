@@ -14,7 +14,7 @@ st.title('Amazon Recommendation system')
 st.header('Product popularity based recommendation')
 @st.cache
 def load_data():
-    df = pd.read_csv('amazon_recommendation/data/export_dataframe.csv')
+    df = pd.read_csv('murtazaj/projects/main/amazon_recommendation/data/export_dataframe.csv')
     df.rating = df.rating.astype(int)
     return df
 
