@@ -85,17 +85,17 @@ selected_category = st.sidebar.selectbox('', ('Ladies', 'Gents', 'Children'))
 st.sidebar.subheader('GST')
 if selected_category == 'Gents':
     m , g, e = mrp_calculator_gents()
-    imageg = Image.open('GENTS.png')
+    imageg = Image.open('MRPCal/GENTS.png')
     st.image(imageg, caption = 'Gents product categories')
 
 elif selected_category == 'Ladies':
     m , g, e = mrp_calculator_ladies()
-    imagel = Image.open('LADIES.png')
+    imagel = Image.open('MRPCal/LADIES.png')
     st.image(imagel, caption = 'Ladies product categories')
 
 else:
     m , g, e = mrp_calculator_children()
-    imagel = Image.open('CHILDREN.png')
+    imagel = Image.open('MRPCal/CHILDREN.png')
     st.image(imagel, caption = 'Children product categories')
 
 # Printing the Model
