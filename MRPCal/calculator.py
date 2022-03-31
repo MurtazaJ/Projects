@@ -1,5 +1,6 @@
 # Importing the Libraries
 import streamlit as st
+from PIL import Image
 
 
 
@@ -27,7 +28,7 @@ def mrp_calculator_gents():
 
     gst_amt    = cp* (GST/100)
 
-    expenses   = (cp + gst_amt) *(10/100)
+    expenses   = (cp + gst_amt) *(2/100)
 
     total      = cp + gst_amt + expenses
 
@@ -37,10 +38,10 @@ def mrp_calculator_gents():
     #     else:
 #         mrp = (total ) + cp - expenses - (2*gst_amt)
     if GST == 18:
-        mrp = int(total + cp + (total*.1) + gst_amt)
+        mrp = int(total + cp)
         mrp = round_to_nearest(mrp)
     else:
-        mrp = int((total ) + cp + gst_amt)
+        mrp = int(total  + cp + (total*0.05) )
         mrp = round_to_nearest(mrp)
     return mrp , gst_amt, expenses
        
@@ -48,31 +49,60 @@ def mrp_calculator_ladies():
     GST = st.sidebar.selectbox('', (12, 18))
     cp  = st.number_input('Please Enter the Cost Price', 0)
 
-    gst_amt = cp* (GST/100)
+    gst_amt = cp * (GST/100)
 
     expenses = (cp + gst_amt) *(2/100)
 
     total = cp + gst_amt + expenses
     if GST == 18:
-        mrp = int(total + cp  + gst_amt) 
+        mrp = int(total + cp ) 
         mrp = round_to_nearest(mrp)
     else:
-        mrp = int((total) + cp  + gst_amt)
+        mrp = int(total  + cp + 1.5*(expenses))
+        mrp = round_to_nearest(mrp)
+    return mrp , gst_amt, expenses
+
+def mrp_calculator_children():
+    GST = st.sidebar.selectbox('', (12, 18))
+    cp  = st.number_input('Please Enter the Cost Price', 0)
+
+    gst_amt = cp * (GST/100)
+
+    expenses = (cp + gst_amt) *(2/100)
+
+    total = cp + gst_amt + expenses
+    if GST == 18:
+        mrp = int(total + cp ) 
+        mrp = round_to_nearest(mrp)
+    else:
+        mrp = int(total  + cp )
         mrp = round_to_nearest(mrp)
     return mrp , gst_amt, expenses
 
 # Running the Model
 st.sidebar.header('Choose Category')
-selected_category = st.sidebar.selectbox('', ('Ladies & Kids', 'Gents'))
+selected_category = st.sidebar.selectbox('', ('Ladies', 'Gents', 'Children'))
 st.sidebar.subheader('GST')
 if selected_category == 'Gents':
     m , g, e = mrp_calculator_gents()
-else:
+    imageg = Image.open('GENTS.png')
+    st.image(imageg, caption = 'Gents product categories')
+
+elif selected_category == 'Ladies':
     m , g, e = mrp_calculator_ladies()
+    imagel = Image.open('LADIES.png')
+    st.image(imagel, caption = 'Ladies product categories')
+
+else:
+    m , g, e = mrp_calculator_children()
+    imagel = Image.open('CHILDREN.png')
+    st.image(imagel, caption = 'Children product categories')
 
 # Printing the Model
-st.header(f'MRP:{m: .2f}')
+st.title(f'MRP:{m: .2f}')
 st.write(f'Gst paid: Rs{g: .2f}           , Expenses occured:  Rs{e: .2f}')
 
 st.write('')
+
 st.markdown('''**Designed by Murtaza** :sunglasses:''')
+
