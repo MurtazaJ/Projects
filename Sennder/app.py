@@ -251,4 +251,4 @@ if uploaded_file is not None:
             st.image(image, caption='')
             
             st.header('6. I would need to involve data from marketing team and colloboration of sales team to build a correct model.') 
-      
+            st.write('Designed by Murtaza')
