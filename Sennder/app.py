@@ -206,7 +206,7 @@ if uploaded_file is not None:
             # Month Conversion
             fig4 = go.Figure()
             month_conversion = df_altered.groupby('Month')['1st Completed Load on Orcas', 'T0 Carrier'].sum().reset_index()
-            month_conversion = Sort_Dataframeby_Month(df=month_conversion, monthcolumnname='Month')
+            # month_conversion = Sort_Dataframeby_Month(df=month_conversion, monthcolumnname='Month')
             month_conversion['conversion_by_month'] = (month_conversion['1st Completed Load on Orcas'] / month_conversion['T0 Carrier'] * 100)        
             col17.title('')
             col17.title('')
