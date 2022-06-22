@@ -3,4 +3,3 @@ pandas
 matplotlib
 Seaborn
 plotly
-sort_dataframeby_monthorweek
