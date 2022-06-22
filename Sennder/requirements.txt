@@ -1,0 +1,7 @@
+
+numpy==1.21.5
+
+pandas
+streamlit==1.9.0
+matplotlib
+seaborn
