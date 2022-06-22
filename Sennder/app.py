@@ -77,7 +77,7 @@ if uploaded_file is not None:
             col3.title('')
             col3.title('')
             col3.title('')
-            image = Image.open('incorrect_data.png')
+            image = Image.open('Sennder/incorrect_data.png')
             col3.image(image, caption='Incorrect data')
 
             # Scatter Plot
@@ -226,28 +226,28 @@ if uploaded_file is not None:
             st.markdown('# Task 2 #')
             
             st.header('1. The most important parameters that we should consider is the transition of lead at various touch points are:')
-            image = Image.open('carrierbook.png')
+            image = Image.open('Sennder/carrierbook.png')
             st.image(image, caption='')
 
 
 
             
             st.header('2. Scoring Model:')
-            image = Image.open('scoring_model.png')
+            image = Image.open('Sennder/scoring_model.png')
             st.image(image, caption='Scoring Model')
 
             st.header('3. There is 1 type of outliers that I found from the data:')            
-            image = Image.open('incorrect_data.png')
+            image = Image.open('Sennder/incorrect_data.png')
             st.image(image, caption='Incorrect data')
             
             st.header('Q4. Steps towards building a predictive lead scoring model:')            
-            image = Image.open('modelsteps.png')
+            image = Image.open('Sennder/modelsteps.png')
             st.image(image, caption='')
 
             st.header('5. Many aspects of data that I would like to enrich are based on the following questions:')
-            image = Image.open('implictdata.png')
+            image = Image.open('Sennder/implictdata.png')
             st.image(image, caption='')
-            image = Image.open('explicitdata.png')
+            image = Image.open('Sennder/explicitdata.png')
             st.image(image, caption='')
             
             st.header('6. I would need to involve data from marketing team and colloboration of sales team to build a correct model.') 
