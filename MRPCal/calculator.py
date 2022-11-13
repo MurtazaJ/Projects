@@ -30,7 +30,7 @@ def mrp_calculator_gents():
 
     expenses   = (cp + gst_amt) *(2/100)
 
-    total      = cp + gst_amt + expenses
+    total      = cp  + expenses
 
     # if cp >= 600:
     #     if GST == 18:
