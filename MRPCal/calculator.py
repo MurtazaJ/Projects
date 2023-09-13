@@ -10,7 +10,7 @@ jt_img_path = os.path.join(current_dir, "MRPCal/GENTS.png")
 # logging.getLogger('numexpr').setLevel(logging.WARNING)
 
 # Defining the header
-# st.set_page_config(layout = 'wide')
+st.set_page_config(layout = 'wide')
 st.header('MRP Calculator')
 #nothingC:\Users\Murtaza\Documents\GIT\Projects\MRPCal\children.png
 
