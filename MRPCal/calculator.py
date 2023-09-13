@@ -2,8 +2,9 @@
 import streamlit as st
 from PIL import Image
 import os
-
-image_url = "https://github.com/MurtazaJ/projects/blob/main/MRPCal/CHILDREN.png"
+current_dir = os.getcwd()
+ch_img_path = os.path.join(current_dir, "MRPCal/CHILDREN.png")
+ld_img_path = os.path.join(current_dir, "MRPCal/CHILDREN.png")
 # logging.basicConfig(level=logging.INFO)
 # logging.getLogger('numexpr').setLevel(logging.WARNING)
 
@@ -99,12 +100,12 @@ if selected_category == 'Gents':
     
 
 elif selected_category == 'Ladies':
-    st.image("projects/MRPCal/ladies.png", caption="Ladies Categories", use_column_width=False)
+    st.image("MRPCal/ladies.png", caption="Ladies Categories", use_column_width=False)
     m , g, e = mrp_calculator_ladies()
    
 
 else:
-    st.image("projects.main.MRPCal/children.png", caption="Children Categories", use_column_width=False)
+    st.image(ch_img_path, caption="Children Categories", use_column_width=False)
     m , g, e = mrp_calculator_children()
     
 
