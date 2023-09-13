@@ -99,7 +99,7 @@ if selected_category == 'Gents':
     
 
 elif selected_category == 'Ladies':
-    st.image("MRPCal/ladies.png", caption="Ladies Categories", use_column_width=False)
+    st.image("projects/MRPCal/ladies.png", caption="Ladies Categories", use_column_width=False)
     m , g, e = mrp_calculator_ladies()
    
 
