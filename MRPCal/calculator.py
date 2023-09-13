@@ -4,6 +4,7 @@ from PIL import Image
 import os
 
 current_directory = os.path.dirname(__file__)
+st.write(current_directory)
 gents_path = os.path.join(current_directory, "MRPCal", "gents.png")
 
 # logging.basicConfig(level=logging.INFO)
