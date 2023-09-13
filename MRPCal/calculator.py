@@ -4,7 +4,8 @@ from PIL import Image
 import os
 current_dir = os.getcwd()
 ch_img_path = os.path.join(current_dir, "MRPCal/CHILDREN.png")
-ld_img_path = os.path.join(current_dir, "MRPCal/CHILDREN.png")
+ld_img_path = os.path.join(current_dir, "MRPCal/LADIES.png")
+jt_img_path = os.path.join(current_dir, "MRPCal/GENTS.png")
 # logging.basicConfig(level=logging.INFO)
 # logging.getLogger('numexpr').setLevel(logging.WARNING)
 
@@ -95,12 +96,12 @@ st.header('Choose Category')
 selected_category = st.selectbox('', ('Ladies', 'Gents', 'Children'))
 
 if selected_category == 'Gents':
-    st.image("MRPCal/gents.png", caption="Gents Categories", use_column_width=False)
+    st.image(jt_img_path, caption="Gents Categories", use_column_width=False)
     m , g, e = mrp_calculator_gents()
     
 
 elif selected_category == 'Ladies':
-    st.image("MRPCal/ladies.png", caption="Ladies Categories", use_column_width=False)
+    st.image(ld_img_path, caption="Ladies Categories", use_column_width=False)
     m , g, e = mrp_calculator_ladies()
    
 
