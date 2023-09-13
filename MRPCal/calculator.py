@@ -101,12 +101,12 @@ if selected_category == 'Gents':
     
 
 elif selected_category == 'Ladies':
-    st.image(ld_img_path, caption="Ladies Categories", use_column_width=False)
+    st.image(ld_img_path, caption="Ladies Categories", use_column_width=True)
     m , g, e = mrp_calculator_ladies()
    
 
 else:
-    st.image(ch_img_path, caption="Children Categories", use_column_width=False)
+    st.image(ch_img_path, caption="Children Categories", use_column_width=True)
     m , g, e = mrp_calculator_children()
     
 
