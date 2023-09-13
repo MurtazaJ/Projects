@@ -97,7 +97,7 @@ st.header('Choose Category')
 selected_category = st.selectbox('', ('Ladies', 'Gents', 'Children'))
 
 if selected_category == 'Gents':
-    st.image("blob/main/MRPCal/gents.png", caption="Gents Categories", use_column_width=False)
+    st.image("MRPCal/gents.png", caption="Gents Categories", use_column_width=False)
     m , g, e = mrp_calculator_gents()
     
 
