@@ -10,7 +10,7 @@ from PIL import Image
 # Defining the header
 st.set_page_config(layout = 'wide')
 st.header('MRP Calculator')
-#nothing
+#nothingC:\Users\Murtaza\Documents\GIT\Projects\MRPCal\children.png
 
 #Defining rounding functions
 def round_to_nearest(n):
@@ -94,17 +94,17 @@ st.header('Choose Category')
 selected_category = st.selectbox('', ('Ladies', 'Gents', 'Children'))
 
 if selected_category == 'Gents':
-    st.image("gents.png", caption="Gents Categories", use_column_width=False)
+    st.image("MRPCal/gents.png", caption="Gents Categories", use_column_width=False)
     m , g, e = mrp_calculator_gents()
     
 
 elif selected_category == 'Ladies':
-    st.image("ladies.png", caption="Ladies Categories", use_column_width=False)
+    st.image("MRPCal/ladies.png", caption="Ladies Categories", use_column_width=False)
     m , g, e = mrp_calculator_ladies()
    
 
 else:
-    st.image("children.png", caption="Children Categories", use_column_width=False)
+    st.image("MRPCal/children.png", caption="Children Categories", use_column_width=False)
     m , g, e = mrp_calculator_children()
     
 
