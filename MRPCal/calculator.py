@@ -23,75 +23,88 @@ def round_to_nearest(n):
 
 # Defining the ladies and Gents functions    
 def mrp_calculator_gents():
-    GST        = st.sidebar.selectbox('', (12, 18))
-    cp         = st.number_input('Please Enter the Cost Price', 0)
+    cp = st.number_input('Please Enter the Cost Price', 0)
 
-    gst_amt    = cp* (GST/100)
+    if cp <= 999:
+        GST = 12
+    else:
+        GST = 18
 
-    expenses   = (cp + gst_amt) *(2/100)
+    gst_amt = cp * (GST / 100)
 
-    total      = cp  + expenses
+    expenses = (cp + gst_amt) * (2 / 100)
 
-    # if cp >= 600:
-    #     if GST == 18:
-    #         mrp     = total + cp + (total*.1) - expenses
-    #     else:
-#         mrp = (total ) + cp - expenses - (2*gst_amt)
+    total = cp + expenses
+
     if GST == 18:
         mrp = int(total + cp)
         mrp = round_to_nearest(mrp)
     else:
-        mrp = int(total  + cp + (total*0.05) )
+        mrp = int(total + cp + (total * 0.19))
         mrp = round_to_nearest(mrp)
-    return mrp , gst_amt, expenses
+
+    return mrp, gst_amt, expenses
+
        
 def mrp_calculator_ladies():
-    GST = st.sidebar.selectbox('', (12, 18))
-    cp  = st.number_input('Please Enter the Cost Price', 0)
+    cp = st.number_input('Please Enter the Cost Price', 0)
 
-    gst_amt = cp * (GST/100)
+    if cp <= 999:
+        GST = 12
+    else:
+        GST = 18
 
-    expenses = (cp + gst_amt) *(2/100)
+    gst_amt = cp * (GST / 100)
+
+    expenses = (cp + gst_amt) * (2 / 100)
 
     total = cp + gst_amt + expenses
+
     if GST == 18:
-        mrp = int(total + cp ) 
+        mrp = int(total + cp)
         mrp = round_to_nearest(mrp)
     else:
-        mrp = int(total  + cp + 1.5*(expenses))
+        mrp = int(total + cp + (2.5/100 * cp) + gst_amt)
         mrp = round_to_nearest(mrp)
-    return mrp , gst_amt, expenses
+
+    return mrp, gst_amt, expenses
+
 
 def mrp_calculator_children():
-    GST = st.sidebar.selectbox('', (12, 18))
-    cp  = st.number_input('Please Enter the Cost Price', 0)
-
-    gst_amt = cp * (GST/100)
-
-    expenses = (cp + gst_amt) *(2/100)
-
-    total = cp + gst_amt + expenses
-    if GST == 18:
-        mrp = int(total + cp ) 
-        mrp = round_to_nearest(mrp)
+    cp = st.number_input('Please Enter the Cost Price', 0)
+    
+    if cp <= 999:
+        GST = 12
     else:
-        mrp = int(total  + cp )
-        mrp = round_to_nearest(mrp)
-    return mrp , gst_amt, expenses
+        GST = 18
+
+    gst_amt = cp * (GST / 100)
+
+    expenses = (cp + gst_amt) * (2 / 100)
+
+    total = cp + cp*(10/100) + gst_amt + expenses
+
+    mrp = int(total + cp)
+    mrp = round_to_nearest(mrp)
+
+    return mrp, gst_amt, expenses
 
 # Running the Model
-st.sidebar.header('Choose Category')
-selected_category = st.sidebar.selectbox('', ('Ladies', 'Gents', 'Children'))
-st.sidebar.subheader('GST')
+st.header('Choose Category')
+selected_category = st.selectbox('', ('Ladies', 'Gents', 'Children'))
+
 if selected_category == 'Gents':
+    st.image("gents.png", caption="Gents Categories", use_column_width=False)
     m , g, e = mrp_calculator_gents()
     
 
 elif selected_category == 'Ladies':
+    st.image("ladies.png", caption="Ladies Categories", use_column_width=False)
     m , g, e = mrp_calculator_ladies()
    
 
 else:
+    st.image("children.png", caption="Children Categories", use_column_width=False)
     m , g, e = mrp_calculator_children()
     
 
