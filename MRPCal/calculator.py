@@ -5,13 +5,13 @@ import os
 
 current_directory = os.path.dirname(__file__)
 st.write(current_directory)
-gents_path = os.path.join(current_directory, "MRPCal", "gents.png")
+gents_path = os.path.join(current_directory, "gents.png")
 
 # logging.basicConfig(level=logging.INFO)
 # logging.getLogger('numexpr').setLevel(logging.WARNING)
 
 # Defining the header
-st.set_page_config(layout = 'wide')
+# st.set_page_config(layout = 'wide')
 st.header('MRP Calculator')
 #nothingC:\Users\Murtaza\Documents\GIT\Projects\MRPCal\children.png
 
@@ -97,7 +97,7 @@ st.header('Choose Category')
 selected_category = st.selectbox('', ('Ladies', 'Gents', 'Children'))
 
 if selected_category == 'Gents':
-    st.image(gents_path, caption="Gents Categories", use_column_width=False)
+    st.image("blob/main/MRPCal/gents.png", caption="Gents Categories", use_column_width=False)
     m , g, e = mrp_calculator_gents()
     
 
