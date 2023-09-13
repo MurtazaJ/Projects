@@ -104,7 +104,7 @@ elif selected_category == 'Ladies':
    
 
 else:
-    st.image(image_url, caption="Children Categories", use_column_width=False)
+    st.image("projects.main.MRPCal/children.png", caption="Children Categories", use_column_width=False)
     m , g, e = mrp_calculator_children()
     
 
