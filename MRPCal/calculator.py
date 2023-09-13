@@ -1,8 +1,10 @@
 # Importing the Libraries
 import streamlit as st
 from PIL import Image
+import os
 
-
+current_directory = os.path.dirname(__file__)
+gents_path = os.path.join(current_directory, "MRPCal", "gents.png")
 
 # logging.basicConfig(level=logging.INFO)
 # logging.getLogger('numexpr').setLevel(logging.WARNING)
@@ -94,7 +96,7 @@ st.header('Choose Category')
 selected_category = st.selectbox('', ('Ladies', 'Gents', 'Children'))
 
 if selected_category == 'Gents':
-    st.image("MRPCal/gents.png", caption="Gents Categories", use_column_width=False)
+    st.image(gents_path, caption="Gents Categories", use_column_width=False)
     m , g, e = mrp_calculator_gents()
     
 
