@@ -3,10 +3,7 @@ import streamlit as st
 from PIL import Image
 import os
 
-current_directory = os.path.dirname(__file__)
-st.write(current_directory)
-gents_path = os.path.join(current_directory, "gents.png")
-
+image_url = "https://github.com/MurtazaJ/projects/blob/main/MRPCal/CHILDREN.png"
 # logging.basicConfig(level=logging.INFO)
 # logging.getLogger('numexpr').setLevel(logging.WARNING)
 
@@ -107,7 +104,7 @@ elif selected_category == 'Ladies':
    
 
 else:
-    st.image("MRPCal/children.png", caption="Children Categories", use_column_width=False)
+    st.image(image_url, caption="Children Categories", use_column_width=False)
     m , g, e = mrp_calculator_children()
     
 
