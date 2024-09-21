@@ -126,13 +126,13 @@ import os
 
 # Set up paths for images
 current_dir = os.getcwd()
-ch_img_path = os.path.join(current_dir, "CHILDREN.png")
-ld_img_path = os.path.join(current_dir, "LADIES.png")
-jt_img_path = os.path.join(current_dir, "GENTS.png")
+ch_img_path = os.path.join(current_dir, "MRPCal\CHILDREN.png")
+ld_img_path = os.path.join(current_dir, "MRPCal\LADIES.png")
+jt_img_path = os.path.join(current_dir, "MRPCal\GENTS.png")
 
 # Defining the header
 st.header('MRP Calculator')
-
+st.header(current_dir)
 # Rounding function
 def round_to_nearest(n):
     if n == 0:
