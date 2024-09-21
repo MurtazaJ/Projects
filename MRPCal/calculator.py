@@ -176,12 +176,12 @@ st.header('Choose Category')
 selected_category = st.selectbox('', ('Ladies', 'Gents', 'Children'))
 
 # Display appropriate image and calculate MRP
-if selected_category == 'Gents':
-    st.image(jt_img_path, caption="Gents Categories", use_column_width=True)
-elif selected_category == 'Ladies':
-    st.image(ld_img_path, caption="Ladies Categories", use_column_width=True)
-else:
-    st.image(ch_img_path, caption="Children Categories", use_column_width=True)
+# if selected_category == 'Gents':
+#     st.image(jt_img_path, caption="Gents Categories", use_column_width=True)
+# elif selected_category == 'Ladies':
+#     st.image(ld_img_path, caption="Ladies Categories", use_column_width=True)
+# else:
+#     st.image(ch_img_path, caption="Children Categories", use_column_width=True)
 
 # Calculate MRP
 m, g, e = mrp_calculator(selected_category)
