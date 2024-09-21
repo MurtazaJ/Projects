@@ -3,14 +3,15 @@ import streamlit as st
 from PIL import Image
 import os
 current_dir = os.getcwd()
-ch_img_path = os.path.join(current_dir, "MRPCal/CHILDREN.png")
-ld_img_path = os.path.join(current_dir, "MRPCal/LADIES.png")
-jt_img_path = os.path.join(current_dir, "MRPCal/GENTS.png")
+st.text(current_dir)
+ch_img_path = os.path.join(current_dir, "CHILDREN.png")
+ld_img_path = os.path.join(current_dir, "LADIES.png")
+jt_img_path = os.path.join(current_dir, "GENTS.png")
 # logging.basicConfig(level=logging.INFO)
 # logging.getLogger('numexpr').setLevel(logging.WARNING)
 
 # Defining the header
-st.set_page_config(layout = 'wide')
+# st.set_page_config(layout = 'wide')
 st.header('MRP Calculator')
 #nothingC:\Users\Murtaza\Documents\GIT\Projects\MRPCal\children.png
 
